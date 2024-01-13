@@ -15,6 +15,15 @@ function accrueAccount(address _account) public {
     _accrueAccountInterest(feeRecipient());
   }
 }
+
+
+function accrue() public {
+    if (lastBlockAccrued < block.number) {
+      _accrueInterest(tokenA);
+      _accrueInterest(tokenB);
+      lastBlockAccrued = block.number;
+    }
+  }
 ```
 
 **Example**: Two users deposit the same amounts in the same block. Thus, after some time they should receive the same tokens.
@@ -138,6 +147,14 @@ function accrueAccount(address _account) public {
     _accrueAccountInterest(feeRecipient());
   }
 }
+
+function accrue() public {
+    if (lastBlockAccrued < block.number) {
+      _accrueInterest(tokenA);
+      _accrueInterest(tokenB);
+      lastBlockAccrued = block.number;
+    }
+  }
 ```
 
 The borrow rates (see `borrowRatePerBlock`) are wrong due to the wrong utilization ratio: The borrow utilization rate uses `LPToken.totalSupply`. Assume there's a single lender supplying \$100k, another single borrower borrows \$70k (ignoring irrelevant details like liquidation and the borrower not putting up collateral for the sake of the argument).
