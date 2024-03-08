@@ -1,0 +1,13 @@
+This is an explanation of Price Oracle Manipulation vulnerability and its main features.
+Many DeFi projects rely on price oracle contracts to get real-time prices of on-chain assets. Attackers can manipulate the price information returned by the price oracle contract to illegally profit.
+Common manipulation methods include:
+1.Malicious Data Sources: The data sources relied upon by the price oracle may come under attack, where attackers provide false or manipulated data. This data could mislead smart contracts into executing improper operations, such as providing incorrect asset prices in transactions, leading to unexpected fund flows.
+2.Pre-Transaction Manipulation: Attackers can manipulate prices by executing trades before the price data is used by the smart contract. By buying or selling large amounts of assets in the market, attackers can artificially change asset prices and then pass these false prices to the smart contract.
+3.Flash Loan Attacks: Attackers utilize flash loans to manipulate price oracles. Flash loans are uncollateralized loans borrowed and repaid within the same transaction, with the aim of manipulating prices in a trade. Through this method, attackers can affect the price oracle, thereby influencing the execution of smart contracts.
+There are three main categories of Price Oracle Manipulation:
+1: AMM price oracle manipulation.
+2: Sandwich attack.
+3: Non-AMM price oracle manipulation.
+These vulnerabilities at the code level are often found in:
+1. incorrect use of oracle in functions, or problems with calculations in functions.
+2. Problems with the access control of the call, resulting in the possibility of an attacker through the function of the external call or function parameters to exploit the vulnerability.
